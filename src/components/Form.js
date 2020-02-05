@@ -11,8 +11,8 @@ const Form = () => {
         .get(
           `http://api.openweathermap.org/data/2.5/weather?q=${city},CA&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
         )
-        .then((response) => {
-          console.log(response.data)
+        .then(({ data }) => {
+          console.log(data)
         })
         .catch((error) => {
           console.log('City No Found')
