@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 
-import { DataContext } from './contexts/DataContext'
+import { WeatherContext } from './contexts/WeatherContext'
 import Form from './components/Form'
 
 const App = () => {
-  const { data } = useContext(DataContext)
-  console.log(data)
+  const { weather } = useContext(WeatherContext)
+  console.log(weather)
 
-  if (data.weather) {
-    return <h1>Weather</h1>
+  if (weather) {
+    return <h1>{weather}</h1>
   } else {
     return <Form />
   }

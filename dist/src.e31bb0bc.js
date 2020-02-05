@@ -31730,19 +31730,25 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"contexts/DataContext.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"contexts/WeatherContext.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.DataContext = void 0;
+exports.default = exports.WeatherContext = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
@@ -31752,10 +31758,10 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var DataContext = (0, _react.createContext)();
-exports.DataContext = DataContext;
+var WeatherContext = (0, _react.createContext)();
+exports.WeatherContext = WeatherContext;
 
-var DataContextProvider = function DataContextProvider(props) {
+var WeatherContextProvider = function WeatherContextProvider(props) {
   var _useState = (0, _react.useState)({
     weather: '',
     iconId: '',
@@ -31763,17 +31769,15 @@ var DataContextProvider = function DataContextProvider(props) {
     humidity: ''
   }),
       _useState2 = _slicedToArray(_useState, 2),
-      data = _useState2[0],
-      setData = _useState2[1];
+      weather = _useState2[0],
+      setWeather = _useState2[1];
 
-  return _react.default.createElement(DataContext.Provider, {
-    value: {
-      data: data
-    }
+  return _react.default.createElement(WeatherContext.Provider, {
+    value: _objectSpread({}, weather)
   }, props.children);
 };
 
-var _default = DataContextProvider;
+var _default = WeatherContextProvider;
 exports.default = _default;
 },{"react":"../node_modules/react/index.js"}],"../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
@@ -33608,7 +33612,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _DataContext = require("./contexts/DataContext");
+var _WeatherContext = require("./contexts/WeatherContext");
 
 var _Form = _interopRequireDefault(require("./components/Form"));
 
@@ -33619,13 +33623,13 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var App = function App() {
-  var _useContext = (0, _react.useContext)(_DataContext.DataContext),
-      data = _useContext.data;
+  var _useContext = (0, _react.useContext)(_WeatherContext.WeatherContext),
+      weather = _useContext.weather;
 
-  console.log(data);
+  console.log(weather);
 
-  if (data.weather) {
-    return _react.default.createElement("h1", null, "Weather");
+  if (weather) {
+    return _react.default.createElement("h1", null, weather);
   } else {
     return _react.default.createElement(_Form.default, null);
   }
@@ -33633,7 +33637,7 @@ var App = function App() {
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./contexts/DataContext":"contexts/DataContext.js","./components/Form":"components/Form.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./contexts/WeatherContext":"contexts/WeatherContext.js","./components/Form":"components/Form.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -33642,14 +33646,14 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _App = _interopRequireDefault(require("./App"));
 
-var _DataContext = _interopRequireDefault(require("./contexts/DataContext"));
+var _WeatherContext = _interopRequireDefault(require("./contexts/WeatherContext"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var node = document.getElementById('app');
 
-_reactDom.default.render(_react.default.createElement(_DataContext.default, null, _react.default.createElement(_App.default, null)), node);
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./App":"App.js","./contexts/DataContext":"contexts/DataContext.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render(_react.default.createElement(_WeatherContext.default, null, _react.default.createElement(_App.default, null)), node);
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./App":"App.js","./contexts/WeatherContext":"contexts/WeatherContext.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -33677,7 +33681,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53261" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57177" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
