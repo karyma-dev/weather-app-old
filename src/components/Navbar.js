@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Navbar = () => {
-  return <div>Navbar</div>
+  return <header className="header">Canadian Weather App</header>
 }
 
 export default Navbar

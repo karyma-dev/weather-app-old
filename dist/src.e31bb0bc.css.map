@@ -1,0 +1,1 @@
+{"version":3,"sources":["sass/reset.scss","sass/main.scss"],"names":[],"mappings":"AAAA;EACE;EACA;;ACFF;EACE","file":"src.e31bb0bc.css","sourceRoot":"../src","sourcesContent":["* {\n  margin: 0;\n  padding: 0;\n}\n","#app {\n  background-color: black;\n}\n"]}

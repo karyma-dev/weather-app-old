@@ -31796,7 +31796,9 @@ var _react = _interopRequireDefault(require("react"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Navbar = function Navbar() {
-  return _react.default.createElement("div", null, "Navbar");
+  return _react.default.createElement("header", {
+    className: "header"
+  }, "Canadian Weather App");
 };
 
 var _default = Navbar;
@@ -52857,8 +52859,10 @@ var App = function App() {
   var _useContext = (0, _react.useContext)(_WeatherContext.WeatherContext),
       weather = _useContext.weather;
 
-  var Body = weather ? _react.default.createElement(_Result.default, null) : _react.default.createElement(_Form.default, null);
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Navbar.default, null), Body);
+  var body = weather ? _react.default.createElement(_Result.default, null) : _react.default.createElement(_Form.default, null);
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Navbar.default, null), _react.default.createElement("main", {
+    className: "main"
+  }, body));
 };
 
 var _default = App;
@@ -52907,7 +52911,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58824" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57971" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
