@@ -31798,7 +31798,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Navbar = function Navbar() {
   return _react.default.createElement("header", {
     className: "header"
-  }, "Canadian Weather App");
+  }, _react.default.createElement("div", {
+    className: "header-title"
+  }, "Canadian Weather App"), _react.default.createElement("div", {
+    className: "header-back"
+  }, "Back"));
 };
 
 var _default = Navbar;
@@ -52791,14 +52795,19 @@ var Form = function Form() {
   };
 
   return _react.default.createElement("form", {
+    className: "form",
     onSubmit: onSubmit
-  }, _react.default.createElement("div", null, _react.default.createElement("label", null, "City: "), _react.default.createElement("input", {
+  }, _react.default.createElement("input", {
+    className: "form-input",
     type: "text",
     value: city,
     onChange: function onChange(e) {
       return setCity(e.target.value);
-    }
-  })), _react.default.createElement("button", null, "Submit"));
+    },
+    placeholder: "City"
+  }), _react.default.createElement("button", {
+    className: "form-submit"
+  }, "Submit"));
 };
 
 var _default = Form;
@@ -52824,9 +52833,12 @@ var Result = function Result() {
       city = _useContext.city,
       description = _useContext.description,
       temperature = _useContext.temperature,
-      humidity = _useContext.humidity;
+      humidity = _useContext.humidity,
+      iconId = _useContext.iconId;
 
-  return _react.default.createElement("div", null, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement("span", null, description)), _react.default.createElement("div", null, _react.default.createElement("span", null, temperature)), _react.default.createElement("div", null, _react.default.createElement("span", null, humidity)));
+  return _react.default.createElement("div", null, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement("img", {
+    src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
+  }), _react.default.createElement("span", null, description)), _react.default.createElement("div", null, _react.default.createElement("span", null, temperature)), _react.default.createElement("div", null, _react.default.createElement("span", null, humidity)));
 };
 
 var _default = Result;

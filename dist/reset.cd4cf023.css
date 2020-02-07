@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: 0;
+}
+
+html {
+  font-size: 18px;
 }
 
 /*# sourceMappingURL=/reset.cd4cf023.css.map */

@@ -38,17 +38,16 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <label>City: </label>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-      </div>
+    <form className="form" onSubmit={onSubmit}>
+      <input
+        className="form-input"
+        type="text"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="City"
+      />
 
-      <button>Submit</button>
+      <button className="form-submit">Submit</button>
     </form>
   )
 }

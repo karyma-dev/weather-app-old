@@ -2,18 +2,51 @@
   background-color: pink;
   height: 100vh;
   width: 100%;
+  background: url("/home.55e4e757.jpeg");
+  background-size: cover;
+  background-position: center;
 }
 
 .header {
   position: fixed;
+  width: 100%;
+  font-size: 1.5rem;
+}
+.header-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
+}
+.header-back {
+  margin-left: 30px;
 }
 
 .main {
-  background-color: peachpuff;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.form {
+  width: 30vw;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.form-input {
+  opacity: 0.8;
+  padding: 5px 10px;
+  font-size: 1rem;
+  margin-right: 5px;
+  height: 100%;
+  width: 100%;
+}
+.form-submit {
+  border: 0;
+  font-size: 1rem;
+  padding: 5px 10px;
+  height: 100%;
 }
 
 /*# sourceMappingURL=/main.07544d9b.css.map */

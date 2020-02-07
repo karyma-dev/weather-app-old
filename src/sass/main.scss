@@ -2,16 +2,53 @@
   background-color: pink;
   height: 100vh;
   width: 100%;
+  background: url('../img/home.jpeg');
+  background-size: cover;
+  background-position: center;
 }
 
 .header {
   position: fixed;
+  width: 100%;
+  font-size: 1.5rem;
+
+  &-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+  }
+
+  &-back {
+    margin-left: 30px;
+  }
 }
 
 .main {
-  background-color: peachpuff;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.form {
+  width: 30vw;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+
+  &-input {
+    opacity: 0.8;
+    padding: 5px 10px;
+    font-size: 1rem;
+    margin-right: 5px;
+    height: 100%;
+    width: 100%;
+  }
+
+  &-submit {
+    border: 0;
+    font-size: 1rem;
+    padding: 5px 10px;
+    height: 100%;
+  }
 }
