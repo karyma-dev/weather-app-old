@@ -1,17 +1,20 @@
-import React, { useContext } from 'react'
-
+import React, { Fragment, useContext } from 'react'
 import { WeatherContext } from './contexts/WeatherContext'
+
+import Navbar from './components/Navbar'
 import Form from './components/Form'
+import Result from './components/Result'
 
 const App = () => {
   const { weather } = useContext(WeatherContext)
-  console.log(weather)
+  const Body = weather ? <Result /> : <Form />
 
-  if (weather) {
-    return <h1>{weather}</h1>
-  } else {
-    return <Form />
-  }
+  return (
+    <Fragment>
+      <Navbar />
+      {Body}
+    </Fragment>
+  )
 }
 
 export default App
