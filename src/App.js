@@ -9,11 +9,13 @@ const App = () => {
   const { weather } = useContext(WeatherContext)
   const body = weather ? <Result /> : <Form />
 
+  const background = weather ? '../img/Rain.jpeg' : '../img/home.jpeg'
+
   return (
-    <Fragment>
+    <div className="app">
       <Navbar />
       <main className="main">{body}</main>
-    </Fragment>
+    </div>
   )
 }
 
