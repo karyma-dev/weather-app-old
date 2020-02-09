@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { WeatherContext } from './contexts/WeatherContext'
 
 import Navbar from './components/Navbar'
@@ -17,10 +17,13 @@ const App = () => {
     : { backgroundImage: `url(${homeBackground})` }
 
   return (
-    <div className="app" style={backgroundStyle}>
+    <Fragment>
+      <div className="background" style={backgroundStyle}></div>
       <Navbar />
-      <main className="main">{body}</main>
-    </div>
+      <div className="content">
+        <main className="main">{body}</main>
+      </div>
+    </Fragment>
   )
 }
 

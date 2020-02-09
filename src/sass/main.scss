@@ -1,9 +1,17 @@
-.app {
+.background {
   height: 100vh;
   width: 100%;
-  // background-image: url('../img/home.jpeg');
   background-size: cover;
   background-position: center;
+  position: fixed;
+  filter: blur(1px);
+  opacity: 0.9;
+}
+
+.content {
+  height: 100vh;
+  width: 100%;
+  z-index: 100;
 }
 
 .header {
@@ -15,6 +23,7 @@
     display: flex;
     justify-content: center;
     margin-top: 2vh;
+    cursor: pointer;
   }
 
   &-back {
@@ -52,7 +61,7 @@
     border: 0;
     font-size: 1rem;
     padding: 5px 10px;
-    height: 100%;
     cursor: pointer;
+    z-index: 100;
   }
 }
