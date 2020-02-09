@@ -52786,11 +52786,12 @@ var Form = function Form() {
     if (city) {
       _axios.default.get("http://api.openweathermap.org/data/2.5/weather?q=".concat(city, ",CA&APPID=29d3d4fa5f00dc1400ca4008a58633d4")).then(function (_ref) {
         var data = _ref.data;
+        console.log(data);
         var weather = data.weather,
             main = data.main;
         var newObj = {
           city: _lodash.default.startCase(_lodash.default.toLower(city)),
-          weather: _lodash.default.toLower(weather[0].main),
+          weather: _lodash.default.startCase(_lodash.default.toLower(weather[0].main)),
           description: _lodash.default.startCase(weather[0].description),
           iconId: weather[0].icon,
           temperature: Math.round(Number(main.temp) - 273.15) + '\xB0 C',
@@ -52879,54 +52880,7 @@ module.exports = "/thunderstorm.149afc8b.jpg";
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "Home", {
-  enumerable: true,
-  get: function () {
-    return _home.default;
-  }
-});
-Object.defineProperty(exports, "Rain", {
-  enumerable: true,
-  get: function () {
-    return _rain.default;
-  }
-});
-Object.defineProperty(exports, "Drizzle", {
-  enumerable: true,
-  get: function () {
-    return _drizzle.default;
-  }
-});
-Object.defineProperty(exports, "Clear", {
-  enumerable: true,
-  get: function () {
-    return _clear.default;
-  }
-});
-Object.defineProperty(exports, "Clouds", {
-  enumerable: true,
-  get: function () {
-    return _clouds.default;
-  }
-});
-Object.defineProperty(exports, "Atmosphere", {
-  enumerable: true,
-  get: function () {
-    return _atmosphere.default;
-  }
-});
-Object.defineProperty(exports, "Snow", {
-  enumerable: true,
-  get: function () {
-    return _snow.default;
-  }
-});
-Object.defineProperty(exports, "Thunderstorm", {
-  enumerable: true,
-  get: function () {
-    return _thunderstorm.default;
-  }
-});
+exports.default = void 0;
 
 var _home = _interopRequireDefault(require("./home.jpeg"));
 
@@ -52945,6 +52899,19 @@ var _snow = _interopRequireDefault(require("./snow.jpg"));
 var _thunderstorm = _interopRequireDefault(require("./thunderstorm.jpg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var backgroundImage = {
+  home: _home.default,
+  rain: _rain.default,
+  drizzle: _drizzle.default,
+  clear: _clear.default,
+  clouds: _clouds.default,
+  atmosphere: _atmosphere.default,
+  snow: _snow.default,
+  thunderstorm: _thunderstorm.default
+};
+var _default = backgroundImage;
+exports.default = _default;
 },{"./home.jpeg":"img/home.jpeg","./rain.jpg":"img/rain.jpg","./drizzle.jpg":"img/drizzle.jpg","./clear.jpg":"img/clear.jpg","./clouds.jpg":"img/clouds.jpg","./atmosphere.jpg":"img/atmosphere.jpg","./snow.jpg":"img/snow.jpg","./thunderstorm.jpg":"img/thunderstorm.jpg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
@@ -52963,7 +52930,7 @@ var _Form = _interopRequireDefault(require("./components/Form"));
 
 var _Result = _interopRequireDefault(require("./components/Result"));
 
-var _img = require("./img");
+var _img = _interopRequireDefault(require("./img"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -52977,9 +52944,9 @@ var App = function App() {
 
   var body = weather ? _react.default.createElement(_Result.default, null) : _react.default.createElement(_Form.default, null);
   var backgroundStyle = weather ? {
-    backgroundImage: "url(".concat(weather, ")")
+    backgroundImage: "url(".concat(_img.default[weather], ")")
   } : {
-    backgroundImage: "url(".concat(_img.Home, ")")
+    backgroundImage: "url(".concat(_img.default.home, ")")
   };
   return _react.default.createElement("div", {
     className: "app",
@@ -53035,7 +53002,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64144" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52967" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

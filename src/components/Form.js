@@ -16,6 +16,7 @@ const Form = () => {
           `http://api.openweathermap.org/data/2.5/weather?q=${city},CA&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
         )
         .then(({ data }) => {
+          console.log(data)
           const { weather, main } = data
 
           const newObj = {
