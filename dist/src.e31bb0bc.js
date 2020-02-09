@@ -52857,7 +52857,95 @@ var Result = function Result() {
 
 var _default = Result;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../contexts/WeatherContext":"contexts/WeatherContext.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../contexts/WeatherContext":"contexts/WeatherContext.js"}],"img/home.jpeg":[function(require,module,exports) {
+module.exports = "/home.55e4e757.jpeg";
+},{}],"img/rain.jpg":[function(require,module,exports) {
+module.exports = "/rain.8aae424f.jpg";
+},{}],"img/drizzle.jpg":[function(require,module,exports) {
+module.exports = "/drizzle.6e48968a.jpg";
+},{}],"img/clear.jpg":[function(require,module,exports) {
+module.exports = "/clear.ccb50b89.jpg";
+},{}],"img/clouds.jpg":[function(require,module,exports) {
+module.exports = "/clouds.ddf9b938.jpg";
+},{}],"img/atmosphere.jpg":[function(require,module,exports) {
+module.exports = "/atmosphere.c6436620.jpg";
+},{}],"img/snow.jpg":[function(require,module,exports) {
+module.exports = "/snow.d9fa2c34.jpg";
+},{}],"img/thunderstorm.jpg":[function(require,module,exports) {
+module.exports = "/thunderstorm.149afc8b.jpg";
+},{}],"img/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Home", {
+  enumerable: true,
+  get: function () {
+    return _home.default;
+  }
+});
+Object.defineProperty(exports, "Rain", {
+  enumerable: true,
+  get: function () {
+    return _rain.default;
+  }
+});
+Object.defineProperty(exports, "Drizzle", {
+  enumerable: true,
+  get: function () {
+    return _drizzle.default;
+  }
+});
+Object.defineProperty(exports, "Clear", {
+  enumerable: true,
+  get: function () {
+    return _clear.default;
+  }
+});
+Object.defineProperty(exports, "Clouds", {
+  enumerable: true,
+  get: function () {
+    return _clouds.default;
+  }
+});
+Object.defineProperty(exports, "Atmosphere", {
+  enumerable: true,
+  get: function () {
+    return _atmosphere.default;
+  }
+});
+Object.defineProperty(exports, "Snow", {
+  enumerable: true,
+  get: function () {
+    return _snow.default;
+  }
+});
+Object.defineProperty(exports, "Thunderstorm", {
+  enumerable: true,
+  get: function () {
+    return _thunderstorm.default;
+  }
+});
+
+var _home = _interopRequireDefault(require("./home.jpeg"));
+
+var _rain = _interopRequireDefault(require("./rain.jpg"));
+
+var _drizzle = _interopRequireDefault(require("./drizzle.jpg"));
+
+var _clear = _interopRequireDefault(require("./clear.jpg"));
+
+var _clouds = _interopRequireDefault(require("./clouds.jpg"));
+
+var _atmosphere = _interopRequireDefault(require("./atmosphere.jpg"));
+
+var _snow = _interopRequireDefault(require("./snow.jpg"));
+
+var _thunderstorm = _interopRequireDefault(require("./thunderstorm.jpg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./home.jpeg":"img/home.jpeg","./rain.jpg":"img/rain.jpg","./drizzle.jpg":"img/drizzle.jpg","./clear.jpg":"img/clear.jpg","./clouds.jpg":"img/clouds.jpg","./atmosphere.jpg":"img/atmosphere.jpg","./snow.jpg":"img/snow.jpg","./thunderstorm.jpg":"img/thunderstorm.jpg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -52875,6 +52963,8 @@ var _Form = _interopRequireDefault(require("./components/Form"));
 
 var _Result = _interopRequireDefault(require("./components/Result"));
 
+var _img = require("./img");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -52886,9 +52976,14 @@ var App = function App() {
       weather = _useContext.weather;
 
   var body = weather ? _react.default.createElement(_Result.default, null) : _react.default.createElement(_Form.default, null);
-  var background = weather ? '../img/Rain.jpeg' : '../img/home.jpeg';
+  var backgroundStyle = weather ? {
+    backgroundImage: "url(".concat(weather, ")")
+  } : {
+    backgroundImage: "url(".concat(_img.Home, ")")
+  };
   return _react.default.createElement("div", {
-    className: "app"
+    className: "app",
+    style: backgroundStyle
   }, _react.default.createElement(_Navbar.default, null), _react.default.createElement("main", {
     className: "main"
   }, body));
@@ -52896,7 +52991,7 @@ var App = function App() {
 
 var _default = App;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./contexts/WeatherContext":"contexts/WeatherContext.js","./components/Navbar":"components/Navbar.js","./components/Form":"components/Form.js","./components/Result":"components/Result.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./contexts/WeatherContext":"contexts/WeatherContext.js","./components/Navbar":"components/Navbar.js","./components/Form":"components/Form.js","./components/Result":"components/Result.js","./img":"img/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -52940,7 +53035,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63853" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64144" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
