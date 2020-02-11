@@ -2,16 +2,15 @@
   height: 100vh;
   width: 100%;
   background-size: cover;
-  background-position: center;
-  position: fixed;
+  background-position: center top;
+  position: absolute;
   filter: blur(1px);
-  opacity: 0.9;
+  z-index: 0;
 }
 
-.content {
+.app {
   height: 100vh;
   width: 100%;
-  z-index: 100;
 }
 
 .header {
@@ -62,6 +61,5 @@
     font-size: 1rem;
     padding: 5px 10px;
     cursor: pointer;
-    z-index: 100;
   }
 }

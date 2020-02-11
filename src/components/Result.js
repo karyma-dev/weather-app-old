@@ -17,7 +17,7 @@ const Result = () => {
         <span>{temperature}</span>
       </div>
       <div>
-        <span>{humidity}</span>
+        <span>Humidity: {humidity}</span>
       </div>
     </div>
   )

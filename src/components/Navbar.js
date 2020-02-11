@@ -12,7 +12,9 @@ const Navbar = () => {
 
   return (
     <header className="header">
-      <div className="header-title">Canadian Weather App</div>
+      <div className="header-title" onClick={() => setWeather('')}>
+        Canadian Cities Weather App
+      </div>
       {backButton}
     </header>
   )

@@ -31815,8 +31815,11 @@ var Navbar = function Navbar() {
   return _react.default.createElement("header", {
     className: "header"
   }, _react.default.createElement("div", {
-    className: "header-title"
-  }, "Canadian Weather App"), backButton);
+    className: "header-title",
+    onClick: function onClick() {
+      return setWeather('');
+    }
+  }, "Canadian Cities Weather App"), backButton);
 };
 
 var _default = Navbar;
@@ -52807,6 +52810,23 @@ var Form = function Form() {
     } else {
       console.log('No City Entered');
     }
+
+    _axios.default.get("http://api.openweathermap.org/data/2.5/forecast?q=".concat(city, "&APPID=29d3d4fa5f00dc1400ca4008a58633d4")).then(function (_ref2) {
+      var data = _ref2.data;
+      var arr = [];
+      data.list.forEach(function (_ref3) {
+        var dt = _ref3.dt;
+        var dateObj = new Date(dt * 1000).toLocaleString();
+        console.log(dateObj);
+        arr.push(dateObj);
+      });
+      console.log(arr);
+    }).catch(function (error) {
+      console.log(error);
+    });
+
+    var dateObj = new Date(1581249600 * 1000);
+    var utcString = dateObj.toUTCString();
   };
 
   return _react.default.createElement("form", {
@@ -52853,7 +52873,7 @@ var Result = function Result() {
 
   return _react.default.createElement("div", null, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement("img", {
     src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
-  }), _react.default.createElement("span", null, description)), _react.default.createElement("div", null, _react.default.createElement("span", null, temperature)), _react.default.createElement("div", null, _react.default.createElement("span", null, humidity)));
+  }), _react.default.createElement("span", null, description)), _react.default.createElement("div", null, _react.default.createElement("span", null, temperature)), _react.default.createElement("div", null, _react.default.createElement("span", null, "Humidity: ", humidity)));
 };
 
 var _default = Result;
@@ -52947,12 +52967,12 @@ var App = function App() {
   } : {
     backgroundImage: "url(".concat(_Home.default, ")")
   };
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Navbar.default, null), _react.default.createElement("div", {
+    className: "app"
+  }, _react.default.createElement("div", {
     className: "background",
     style: backgroundStyle
-  }), _react.default.createElement(_Navbar.default, null), _react.default.createElement("div", {
-    className: "content"
-  }, _react.default.createElement("main", {
+  }), _react.default.createElement("main", {
     className: "main"
   }, body)));
 };
@@ -53003,7 +53023,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58036" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59365" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

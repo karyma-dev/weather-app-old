@@ -18,9 +18,9 @@ const App = () => {
 
   return (
     <Fragment>
-      <div className="background" style={backgroundStyle}></div>
       <Navbar />
-      <div className="content">
+      <div className="app">
+        <div className="background" style={backgroundStyle}></div>
         <main className="main">{body}</main>
       </div>
     </Fragment>
