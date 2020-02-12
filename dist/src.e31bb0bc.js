@@ -52802,10 +52802,7 @@ var Form = function Form() {
         };
         setWeather(newObj);
       }).catch(function (error) {
-        console.log({
-          error: error,
-          message: 'city not found'
-        });
+        throw error;
       });
     } else {
       console.log('No City Entered');
@@ -52813,20 +52810,17 @@ var Form = function Form() {
 
     _axios.default.get("http://api.openweathermap.org/data/2.5/forecast?q=".concat(city, "&APPID=29d3d4fa5f00dc1400ca4008a58633d4")).then(function (_ref2) {
       var data = _ref2.data;
-      var arr = [];
-      data.list.forEach(function (_ref3) {
-        var dt = _ref3.dt;
-        var dateObj = new Date(dt * 1000).toLocaleString();
-        console.log(dateObj);
-        arr.push(dateObj);
+      var arr = data.list.map(function (item) {
+        var dateObj = new Date(item.dt * 1000);
+        item.day = dateObj.toDateString().slice(0, 3);
+        item.date = dateObj.toDateString().slice(4, 10);
+        item.time = dateObj.toLocaleTimeString();
+        return item;
       });
       console.log(arr);
     }).catch(function (error) {
-      console.log(error);
+      throw error;
     });
-
-    var dateObj = new Date(1581249600 * 1000);
-    var utcString = dateObj.toUTCString();
   };
 
   return _react.default.createElement("form", {

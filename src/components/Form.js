@@ -31,7 +31,7 @@ const Form = () => {
           setWeather(newObj)
         })
         .catch((error) => {
-          console.log({ error, message: 'city not found' })
+          throw error
         })
     } else {
       console.log('No City Entered')
@@ -42,21 +42,20 @@ const Form = () => {
         `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
       )
       .then(({ data }) => {
-        let arr = []
-        data.list.forEach(({ dt }) => {
-          const dateObj = new Date(dt * 1000).toLocaleString()
-          console.log(dateObj)
-          arr.push(dateObj)
+        const arr = data.list.map((item) => {
+          const dateObj = new Date(item.dt * 1000)
+          item.day = dateObj.toDateString().slice(0, 3)
+          item.date = dateObj.toDateString().slice(4, 10)
+          item.time = dateObj.toLocaleTimeString()
+
+          return item
         })
 
         console.log(arr)
       })
       .catch((error) => {
-        console.log(error)
+        throw error
       })
-
-    const dateObj = new Date(1581249600 * 1000)
-    const utcString = dateObj.toUTCString()
   }
 
   return (
