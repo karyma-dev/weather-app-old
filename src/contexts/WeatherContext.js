@@ -1,9 +1,10 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useReducer } from 'react'
+import { weatherReducer } from '../reducers/weatherReducer'
 
 export const WeatherContext = createContext()
 
-const WeatherContextProvider = (props) => {
-  const [weather, setWeather] = useState({
+const WeatherContextProvider = ({ children }) => {
+  const [weather, dispatch] = useReducer(weatherReducer, {
     city: '',
     weather: '',
     description: '',
@@ -13,8 +14,8 @@ const WeatherContextProvider = (props) => {
   })
 
   return (
-    <WeatherContext.Provider value={{ ...weather, setWeather }}>
-      {props.children}
+    <WeatherContext.Provider value={{ ...weather, dispatch }}>
+      {children}
     </WeatherContext.Provider>
   )
 }
