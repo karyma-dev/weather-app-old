@@ -13,7 +13,7 @@ export const weatherReducer = (state, action) => {
         humidity: ''
       }
       return state
-    case 'SET_WEATHER':
+    case 'GET_WEATHER':
       return new Promise((resolve) => {
         axios
           .get(
