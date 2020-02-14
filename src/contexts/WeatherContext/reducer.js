@@ -1,8 +1,8 @@
 import axios from 'axios'
 import _ from 'lodash'
 
-export const weatherReducer = (state, { type, payload }) => {
-  switch (type) {
+export const weatherReducer = (state, action) => {
+  switch (action.type) {
     case 'RESET':
       state = {
         city: '',
@@ -17,7 +17,7 @@ export const weatherReducer = (state, { type, payload }) => {
       return new Promise((resolve) => {
         axios
           .get(
-            `http://api.openweathermap.org/data/2.5/weather?q=${payload},CA&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
+            `http://api.openweathermap.org/data/2.5/weather?q=${action.payload},CA&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
           )
           .then(({ data }) => {
             const { weather, main } = data

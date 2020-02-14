@@ -6,9 +6,9 @@ export const Context = createContext()
 
 const ContextProvider = ({ children }) => {
   return (
-    <WeatherContextProvider>
-      <Context.Provider>{children}</Context.Provider>
-    </WeatherContextProvider>
+    <Context.Provider>
+      <WeatherContextProvider>{children}</WeatherContextProvider>
+    </Context.Provider>
   )
 }
 

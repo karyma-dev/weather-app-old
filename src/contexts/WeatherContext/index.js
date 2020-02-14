@@ -1,14 +1,14 @@
 import React, { createContext } from 'react'
-import { weatherReducer } from './reducers/weatherReducer'
+import { weatherReducer } from './reducer'
 
-import useAsyncReducer from '../hooks/useAsyncReducer'
+import useAsyncReducer from '../../hooks/useAsyncReducer'
 
 export const WeatherContext = createContext()
 
 const WeatherContextProvider = (props) => {
-  const [weather, dispatch] = useAsyncReducer(weatherReducer, {})
+  const [weather, weatherDispatch] = useAsyncReducer(weatherReducer, {})
   return (
-    <WeatherContext.Provider value={{ ...weather, dispatch }}>
+    <WeatherContext.Provider value={{ ...weather, weatherDispatch }}>
       {props.children}
     </WeatherContext.Provider>
   )

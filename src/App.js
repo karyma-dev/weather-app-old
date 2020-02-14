@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react'
-import { WeatherContext } from './contexts/WeatherContext'
+import { WeatherContext } from './contexts/WeatherContext/index'
 
 import Navbar from './components/Navbar'
 import Form from './components/Form'
