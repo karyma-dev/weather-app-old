@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import App from './App'
-import ContextProvider from './contexts'
+import WeatherProvider from './contexts/WeatherContext'
 
 const node = document.getElementById('root')
 
 ReactDOM.render(
-  <ContextProvider>
+  <WeatherProvider>
     <App />
-  </ContextProvider>,
+  </WeatherProvider>,
   node
 )

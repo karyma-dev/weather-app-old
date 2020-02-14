@@ -2,10 +2,10 @@ import React, { useContext } from 'react'
 import { WeatherContext } from '../contexts/WeatherContext'
 
 const Navbar = () => {
-  const { weather, setWeather } = useContext(WeatherContext)
+  const { weather, dispatch } = useContext(WeatherContext)
 
   const backButton = weather ? (
-    <div className="header-back" onClick={() => setWeather('')}>
+    <div className="header-back" onClick={() => dispatch({ type: 'RESET' })}>
       <button className="header-back_button">Back</button>
     </div>
   ) : null

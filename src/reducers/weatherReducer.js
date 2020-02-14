@@ -1,5 +1,8 @@
-export const weatherReducer = (state, action) => {
-  switch (action.type) {
+import axios from 'axios'
+import _ from 'lodash'
+
+export const weatherReducer = (state, { type, payload }) => {
+  switch (type) {
     case 'RESET':
       state = {
         city: '',
@@ -10,6 +13,30 @@ export const weatherReducer = (state, action) => {
         humidity: ''
       }
       return state
+    case 'SET_WEATHER':
+      return new Promise((resolve) => {
+        axios
+          .get(
+            `http://api.openweathermap.org/data/2.5/weather?q=${payload},CA&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
+          )
+          .then(({ data }) => {
+            const { weather, main } = data
+
+            const newObj = {
+              weather: _.toLower(weather[0].main),
+              description: _.startCase(weather[0].description),
+              iconId: weather[0].icon,
+              temperature: Math.round(Number(main.temp) - 273.15) + '\xB0 C',
+              humidity: main.humidity + '%'
+            }
+            state = newObj
+            console.log(state)
+            resolve(state)
+          })
+          .catch((error) => {
+            throw error
+          })
+      })
     default:
       return state
   }
