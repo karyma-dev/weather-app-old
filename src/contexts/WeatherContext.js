@@ -1,5 +1,5 @@
 import React, { createContext } from 'react'
-import { weatherReducer } from '../reducers/weatherReducer'
+import { weatherReducer } from './reducers/weatherReducer'
 
 import useAsyncReducer from '../hooks/useAsyncReducer'
 
