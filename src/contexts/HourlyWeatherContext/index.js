@@ -12,11 +12,11 @@ const HourlyWeatherContextProvider = (props) => {
   )
 
   return (
-    <HourWeatherContext.Provider
+    <HourlyWeatherContext.Provider
       value={{ hourlyWeather, hourlyWeatherDispatch }}
     >
       {props.children}
-    </HourWeatherContext.Provider>
+    </HourlyWeatherContext.Provider>
   )
 }
 

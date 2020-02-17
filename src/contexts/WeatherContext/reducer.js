@@ -29,8 +29,9 @@ export const weatherReducer = (state, action) => {
               temperature: Math.round(Number(main.temp) - 273.15) + '\xB0 C',
               humidity: main.humidity + '%'
             }
+
             state = newObj
-            console.log(state)
+
             resolve(state)
           })
           .catch((error) => {

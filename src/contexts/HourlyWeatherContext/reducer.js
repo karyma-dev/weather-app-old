@@ -1,10 +1,12 @@
-export const hourlyWeatherReduce = (state, action) => {
+import axios from 'axios'
+
+export const hourlyWeatherReducer = (state, action) => {
   switch (action.type) {
-    case 'GET_WEATHER': {
+    case 'GET_WEATHER':
       return new Promise((resolve) => {
         axios
           .get(
-            `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
+            `http://api.openweathermap.org/data/2.5/forecast?q=${action.payload}&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
           )
           .then(({ data }) => {
             const arr = data.list.map((item) => {
@@ -16,12 +18,15 @@ export const hourlyWeatherReduce = (state, action) => {
               return item
             })
 
-            resolve(arr)
+            state = arr
+            console.log(state)
+            resolve(state)
           })
           .catch((error) => {
             throw error
           })
       })
-    }
+    default:
+      return state
   }
 }

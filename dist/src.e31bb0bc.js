@@ -52750,7 +52750,7 @@ var weatherReducer = function weatherReducer(state, action) {
       };
       return state;
 
-    case 'SET_WEATHER':
+    case 'GET_WEATHER':
       return new Promise(function (resolve) {
         _axios.default.get("http://api.openweathermap.org/data/2.5/weather?q=".concat(action.payload, ",CA&APPID=29d3d4fa5f00dc1400ca4008a58633d4")).then(function (_ref) {
           var data = _ref.data;
@@ -52764,7 +52764,6 @@ var weatherReducer = function weatherReducer(state, action) {
             humidity: main.humidity + '%'
           };
           state = newObj;
-          console.log(state);
           resolve(state);
         }).catch(function (error) {
           throw error;
@@ -53727,7 +53726,87 @@ var Navbar = function Navbar() {
 
 var _default = Navbar;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js"}],"components/Form.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js"}],"contexts/HourlyWeatherContext/reducer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hourlyWeatherReducer = void 0;
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var hourlyWeatherReducer = function hourlyWeatherReducer(state, action) {
+  switch (action.type) {
+    case 'GET_WEATHER':
+      return new Promise(function (resolve) {
+        _axios.default.get("http://api.openweathermap.org/data/2.5/forecast?q=".concat(action.payload, "&APPID=29d3d4fa5f00dc1400ca4008a58633d4")).then(function (_ref) {
+          var data = _ref.data;
+          var arr = data.list.map(function (item) {
+            var dateObj = new Date(item.dt * 1000);
+            item.day = dateObj.toDateString().slice(0, 3);
+            item.date = dateObj.toDateString().slice(4, 10);
+            item.time = dateObj.toLocaleTimeString();
+            return item;
+          });
+          state = arr;
+          console.log(state);
+          resolve(state);
+        }).catch(function (error) {
+          throw error;
+        });
+      });
+
+    default:
+      return state;
+  }
+};
+
+exports.hourlyWeatherReducer = hourlyWeatherReducer;
+},{"axios":"../node_modules/axios/index.js"}],"contexts/HourlyWeatherContext/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.HourlyWeatherContext = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reducer = require("./reducer");
+
+var _useAsyncReducer3 = _interopRequireDefault(require("../../hooks/useAsyncReducer"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var HourlyWeatherContext = (0, _react.createContext)();
+exports.HourlyWeatherContext = HourlyWeatherContext;
+
+var HourlyWeatherContextProvider = function HourlyWeatherContextProvider(props) {
+  var _useAsyncReducer = (0, _useAsyncReducer3.default)(_reducer.hourlyWeatherReducer, {}),
+      _useAsyncReducer2 = (0, _slicedToArray2.default)(_useAsyncReducer, 2),
+      hourlyWeather = _useAsyncReducer2[0],
+      hourlyWeatherDispatch = _useAsyncReducer2[1];
+
+  return _react.default.createElement(HourlyWeatherContext.Provider, {
+    value: {
+      hourlyWeather: hourlyWeather,
+      hourlyWeatherDispatch: hourlyWeatherDispatch
+    }
+  }, props.children);
+};
+
+var _default = HourlyWeatherContextProvider;
+exports.default = _default;
+},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","./reducer":"contexts/HourlyWeatherContext/reducer.js","../../hooks/useAsyncReducer":"hooks/useAsyncReducer.js"}],"components/Form.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53742,6 +53821,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _lodash = _interopRequireDefault(require("lodash"));
 
 var _index = require("../contexts/WeatherContext/index");
+
+var _index2 = require("../contexts/HourlyWeatherContext/index");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -53758,32 +53839,22 @@ var Form = function Form() {
   var _useContext = (0, _react.useContext)(_index.WeatherContext),
       weatherDispatch = _useContext.weatherDispatch;
 
+  var _useContext2 = (0, _react.useContext)(_index2.HourlyWeatherContext),
+      hourlyWeatherDispatch = _useContext2.hourlyWeatherDispatch;
+
   var onSubmit = function onSubmit(e) {
     e.preventDefault();
 
     if (city) {
       weatherDispatch({
-        type: 'SET_WEATHER',
+        type: 'GET_WEATHER',
         payload: _lodash.default.startCase(_lodash.default.toLower(city))
       });
-    } // axios
-    //   .get(
-    //     `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=29d3d4fa5f00dc1400ca4008a58633d4`
-    //   )
-    //   .then(({ data }) => {
-    //     const arr = data.list.map((item) => {
-    //       const dateObj = new Date(item.dt * 1000)
-    //       item.day = dateObj.toDateString().slice(0, 3)
-    //       item.date = dateObj.toDateString().slice(4, 10)
-    //       item.time = dateObj.toLocaleTimeString()
-    //       return item
-    //     })
-    //     console.log(arr)
-    //   })
-    //   .catch((error) => {
-    //     throw error
-    //   })
-
+      hourlyWeatherDispatch({
+        type: 'GET_WEATHER',
+        payload: _lodash.default.startCase(_lodash.default.toLower(city))
+      });
+    }
   };
 
   return _react.default.createElement("form", {
@@ -53804,7 +53875,7 @@ var Form = function Form() {
 
 var _default = Form;
 exports.default = _default;
-},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js"}],"components/Result.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js","../contexts/HourlyWeatherContext/index":"contexts/HourlyWeatherContext/index.js"}],"components/Result.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53946,7 +54017,9 @@ exports.default = exports.Context = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _WeatherContext = _interopRequireDefault(require("./WeatherContext"));
+var _index = _interopRequireDefault(require("./WeatherContext/index"));
+
+var _index2 = _interopRequireDefault(require("./HourlyWeatherContext/index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53959,12 +54032,12 @@ exports.Context = Context;
 
 var ContextProvider = function ContextProvider(_ref) {
   var children = _ref.children;
-  return _react.default.createElement(Context.Provider, null, _react.default.createElement(_WeatherContext.default, null, children));
+  return _react.default.createElement(Context.Provider, null, _react.default.createElement(_index2.default, null, _react.default.createElement(_index.default, null, children)));
 };
 
 var _default = ContextProvider;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","./WeatherContext":"contexts/WeatherContext/index.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./WeatherContext/index":"contexts/WeatherContext/index.js","./HourlyWeatherContext/index":"contexts/HourlyWeatherContext/index.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -53973,14 +54046,14 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _App = _interopRequireDefault(require("./App"));
 
-var _contexts = _interopRequireDefault(require("./contexts"));
+var _index = _interopRequireDefault(require("./contexts/index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var node = document.getElementById('root');
 
-_reactDom.default.render(_react.default.createElement(_contexts.default, null, _react.default.createElement(_App.default, null)), node);
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./App":"App.js","./contexts":"contexts/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render(_react.default.createElement(_index.default, null, _react.default.createElement(_App.default, null)), node);
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./App":"App.js","./contexts/index":"contexts/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -54008,7 +54081,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49844" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55775" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

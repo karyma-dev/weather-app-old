@@ -2,15 +2,22 @@ import React, { useState, useContext } from 'react'
 import _ from 'lodash'
 
 import { WeatherContext } from '../contexts/WeatherContext/index'
+import { HourlyWeatherContext } from '../contexts/HourlyWeatherContext/index'
 
 const Form = () => {
   const [city, setCity] = useState('')
   const { weatherDispatch } = useContext(WeatherContext)
+  const { hourlyWeatherDispatch } = useContext(HourlyWeatherContext)
 
   const onSubmit = (e) => {
     e.preventDefault()
     if (city) {
       weatherDispatch({
+        type: 'GET_WEATHER',
+        payload: _.startCase(_.toLower(city))
+      })
+
+      hourlyWeatherDispatch({
         type: 'GET_WEATHER',
         payload: _.startCase(_.toLower(city))
       })
