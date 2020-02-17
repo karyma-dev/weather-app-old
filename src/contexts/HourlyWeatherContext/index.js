@@ -8,7 +8,7 @@ export const HourlyWeatherContext = createContext()
 const HourlyWeatherContextProvider = (props) => {
   const [hourlyWeather, hourlyWeatherDispatch] = useAsyncReducer(
     hourlyWeatherReducer,
-    {}
+    null
   )
 
   return (

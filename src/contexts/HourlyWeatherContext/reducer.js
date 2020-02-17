@@ -19,7 +19,7 @@ export const hourlyWeatherReducer = (state, action) => {
             })
 
             state = arr
-            console.log(state)
+
             resolve(state)
           })
           .catch((error) => {
