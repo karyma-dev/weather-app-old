@@ -5,22 +5,15 @@ const Navbar = () => {
   const { weather, weatherDispatch } = useContext(WeatherContext)
 
   const backButton = weather ? (
-    <div
-      className="header-back"
+    <button
+      className="header-button"
       onClick={() => weatherDispatch({ type: 'RESET' })}
     >
-      <button className="header-back_button">Back</button>
-    </div>
+      Back
+    </button>
   ) : null
 
-  return (
-    <header className="header">
-      <div className="header-title" onClick={() => setWeather('')}>
-        Canadian Cities Weather App
-      </div>
-      {backButton}
-    </header>
-  )
+  return <header className="header">{backButton}</header>
 }
 
 export default Navbar

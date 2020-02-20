@@ -53704,24 +53704,17 @@ var Navbar = function Navbar() {
       weather = _useContext.weather,
       weatherDispatch = _useContext.weatherDispatch;
 
-  var backButton = weather ? _react.default.createElement("div", {
-    className: "header-back",
+  var backButton = weather ? _react.default.createElement("button", {
+    className: "header-button",
     onClick: function onClick() {
       return weatherDispatch({
         type: 'RESET'
       });
     }
-  }, _react.default.createElement("button", {
-    className: "header-back_button"
-  }, "Back")) : null;
+  }, "Back") : null;
   return _react.default.createElement("header", {
     className: "header"
-  }, _react.default.createElement("div", {
-    className: "header-title",
-    onClick: function onClick() {
-      return setWeather('');
-    }
-  }, "Canadian Cities Weather App"), backButton);
+  }, backButton);
 };
 
 var _default = Navbar;
@@ -53747,7 +53740,6 @@ var hourlyWeatherReducer = function hourlyWeatherReducer(state, action) {
           var arr = data.list.map(function (item) {
             var dateObj = new Date(item.dt * 1000);
             var time = dateObj.toLocaleTimeString();
-            console.log(time);
             item.day = dateObj.toDateString().slice(0, 3);
             item.date = dateObj.toDateString().slice(4, 10);
             item.time = time.slice(0, time.search(/\D/)) + time.slice(time.search(/\s/), 11);
@@ -53976,11 +53968,11 @@ var HourlyForecast = function HourlyForecast() {
     var temperature = Math.round(Number(forecast.main.temp) - 273.15) + '\xB0 C';
     return _react.default.createElement("div", {
       key: i
-    }, _react.default.createElement("span", null, forecast.time), _react.default.createElement("img", {
+    }, _react.default.createElement("div", null, forecast.time), _react.default.createElement("img", {
       src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
-    }), _react.default.createElement("span", null, temperature));
+    }), _react.default.createElement("div", null, temperature));
   }) : null;
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h2", null, "Hourly Forecast"), hourlyForecast);
+  return _react.default.createElement(_react.Fragment, null, hourlyForecast);
 };
 
 var _default = HourlyForecast;
@@ -54013,7 +54005,13 @@ var Result = function Result() {
   var _useContext = (0, _react.useContext)(_index.WeatherContext),
       city = _useContext.city;
 
-  return _react.default.createElement("div", null, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement(_TodayForecast.default, null)), _react.default.createElement("div", null, _react.default.createElement(_HourlyForecast.default, null)), _react.default.createElement("div", null, _react.default.createElement(_DailyForecast.default, null)));
+  return _react.default.createElement("div", {
+    className: "result"
+  }, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement(_TodayForecast.default, null)), _react.default.createElement("div", {
+    className: "hourly"
+  }, _react.default.createElement("h3", null, "Hourly Forecast"), _react.default.createElement("div", {
+    className: "hourly-forecast"
+  }, _react.default.createElement(_HourlyForecast.default, null))), _react.default.createElement("div", null, _react.default.createElement(_DailyForecast.default, null)));
 };
 
 var _default = Result;
@@ -54193,7 +54191,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62329" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56924" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

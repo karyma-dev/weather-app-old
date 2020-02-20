@@ -9,14 +9,17 @@ const Result = () => {
   const { city } = useContext(WeatherContext)
 
   return (
-    <div>
+    <div className="result">
       <h2>{city}</h2>
       <div>
         <TodayForecast />
       </div>
 
-      <div>
-        <HourlyForecast />
+      <div className="hourly">
+        <h3>Hourly Forecast</h3>
+        <div className="hourly-forecast">
+          <HourlyForecast />
+        </div>
       </div>
 
       <div>

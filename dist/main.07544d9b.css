@@ -16,19 +16,13 @@
 .header {
   position: fixed;
   width: 100%;
+}
+.header-button {
   font-size: 1.5rem;
-}
-.header-title {
-  display: flex;
-  justify-content: center;
-  margin-top: 2vh;
+  margin: 20px 0 0 20px;
   cursor: pointer;
-}
-.header-back {
-  margin-left: 30px;
-}
-.header-back_button {
-  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .main {
@@ -36,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 }
 
 .form {
@@ -57,6 +52,23 @@
   font-size: 1rem;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.result {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hourly {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.hourly-forecast {
+  display: flex;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=/main.07544d9b.css.map */

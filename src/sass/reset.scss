@@ -9,4 +9,11 @@
 html {
   font-size: 18px;
   font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
 }

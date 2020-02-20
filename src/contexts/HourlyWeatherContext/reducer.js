@@ -12,7 +12,6 @@ export const hourlyWeatherReducer = (state, action) => {
             const arr = data.list.map((item) => {
               const dateObj = new Date(item.dt * 1000)
               const time = dateObj.toLocaleTimeString()
-              console.log(time)
               item.day = dateObj.toDateString().slice(0, 3)
               item.date = dateObj.toDateString().slice(4, 10)
               item.time =
