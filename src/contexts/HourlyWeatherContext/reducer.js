@@ -15,10 +15,9 @@ export const hourlyWeatherReducer = (state, action) => {
               console.log(time)
               item.day = dateObj.toDateString().slice(0, 3)
               item.date = dateObj.toDateString().slice(4, 10)
-              item.time = `${time.slice(0, time.search(/\D/))}${time.slice(
-                8,
-                11
-              )}`.replace(/\s/g, '')
+              item.time =
+                time.slice(0, time.search(/\D/)) +
+                time.slice(time.search(/\s/), 11)
 
               return item
             })
