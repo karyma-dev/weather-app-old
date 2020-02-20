@@ -74,3 +74,14 @@
     justify-content: space-between;
   }
 }
+
+.daily {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &-group {
+    display: flex;
+    justify-content: space-between;
+  }
+}

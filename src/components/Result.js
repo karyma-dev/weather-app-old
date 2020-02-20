@@ -22,7 +22,8 @@ const Result = () => {
         </div>
       </div>
 
-      <div>
+      <div className="daily">
+        <h3>Daily Forecast</h3>
         <DailyForecast />
       </div>
     </div>

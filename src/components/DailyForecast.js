@@ -21,21 +21,18 @@ const DailyForecast = () => {
           '\xB0 C'
 
         return (
-          <div key={i}>
-            <span>{day}</span>
-            <img src={`http://openweathermap.org/img/wn/${iconId}.png`} />
-            <span>{temperature}</span>
+          <div className="daily-group" key={i}>
+            <div>{day}</div>
+            <div>
+              <img src={`http://openweathermap.org/img/wn/${iconId}.png`} />
+            </div>
+            <div>{temperature}</div>
           </div>
         )
       })
     : null
 
-  return (
-    <Fragment>
-      <h2>Daily Forecast</h2>
-      {dailyForecast}
-    </Fragment>
-  )
+  return <Fragment>{dailyForecast}</Fragment>
 }
 
 export default DailyForecast

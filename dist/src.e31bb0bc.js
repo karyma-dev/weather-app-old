@@ -53933,12 +53933,13 @@ var DailyForecast = function DailyForecast() {
     var iconId = weeklyWeather[day][0].weather[0].icon;
     var temperature = Math.round(Number(weeklyWeather[day][0].main.temp) - 273.15) + '\xB0 C';
     return _react.default.createElement("div", {
+      className: "daily-group",
       key: i
-    }, _react.default.createElement("span", null, day), _react.default.createElement("img", {
+    }, _react.default.createElement("div", null, day), _react.default.createElement("div", null, _react.default.createElement("img", {
       src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
-    }), _react.default.createElement("span", null, temperature));
+    })), _react.default.createElement("div", null, temperature));
   }) : null;
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h2", null, "Daily Forecast"), dailyForecast);
+  return _react.default.createElement(_react.Fragment, null, dailyForecast);
 };
 
 var _default = DailyForecast;
@@ -54011,7 +54012,9 @@ var Result = function Result() {
     className: "hourly"
   }, _react.default.createElement("h3", null, "Hourly Forecast"), _react.default.createElement("div", {
     className: "hourly-forecast"
-  }, _react.default.createElement(_HourlyForecast.default, null))), _react.default.createElement("div", null, _react.default.createElement(_DailyForecast.default, null)));
+  }, _react.default.createElement(_HourlyForecast.default, null))), _react.default.createElement("div", {
+    className: "daily"
+  }, _react.default.createElement("h3", null, "Daily Forecast"), _react.default.createElement(_DailyForecast.default, null)));
 };
 
 var _default = Result;

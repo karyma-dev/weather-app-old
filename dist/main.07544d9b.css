@@ -71,4 +71,14 @@
   justify-content: space-between;
 }
 
+.daily {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.daily-group {
+  display: flex;
+  justify-content: space-between;
+}
+
 /*# sourceMappingURL=/main.07544d9b.css.map */
