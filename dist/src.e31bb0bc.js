@@ -53936,8 +53936,11 @@ var DailyForecast = function DailyForecast() {
 
   var weeklyWeather = hourlyWeather ? groupBy('day')(hourlyWeather) : {};
   var dailyForecast = hourlyWeather ? Object.keys(weeklyWeather).map(function (day, i) {
-    var iconId = weeklyWeather[day][0].weather[0].icon;
-    var temperature = Math.round(Number(weeklyWeather[day][0].main.temp) - 273.15) + '\xB0 C';
+    var weatherObj = weeklyWeather[day].find(function (weather) {
+      return weather.time === '10 AM';
+    }) || weeklyWeather[day][0];
+    var iconId = weatherObj.weather[0].icon;
+    var temperature = Math.round(Number(weatherObj.main.temp) - 273.15) + '\xB0 C';
     return _react.default.createElement("div", {
       className: "daily-group",
       key: i

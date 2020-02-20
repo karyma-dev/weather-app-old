@@ -15,10 +15,14 @@ const DailyForecast = () => {
 
   const dailyForecast = hourlyWeather
     ? Object.keys(weeklyWeather).map((day, i) => {
-        const iconId = weeklyWeather[day][0].weather[0].icon
+        const weatherObj =
+          weeklyWeather[day].find((weather) => {
+            return weather.time === '10 AM'
+          }) || weeklyWeather[day][0]
+
+        const iconId = weatherObj.weather[0].icon
         const temperature =
-          Math.round(Number(weeklyWeather[day][0].main.temp) - 273.15) +
-          '\xB0 C'
+          Math.round(Number(weatherObj.main.temp) - 273.15) + '\xB0 C'
 
         return (
           <div className="daily-group" key={i}>
