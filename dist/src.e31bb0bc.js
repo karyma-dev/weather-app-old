@@ -53959,17 +53959,32 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _index = require("../contexts/HourlyWeatherContext/index");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var HourlyForecast = function HourlyForecast() {
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h2", null, "Hourly Forecast"));
+  var _useContext = (0, _react.useContext)(_index.HourlyWeatherContext),
+      hourlyWeather = _useContext.hourlyWeather;
+
+  var hourlyForecast = hourlyWeather ? hourlyWeather.slice(0, 5).map(function (forecast, i) {
+    console.log(forecast);
+    var iconId = forecast.weather[0].icon;
+    var temperature = Math.round(Number(forecast.main.temp) - 273.15) + '\xB0 C';
+    return _react.default.createElement("div", {
+      key: i
+    }, _react.default.createElement("span", null, forecast.time), _react.default.createElement("img", {
+      src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
+    }), _react.default.createElement("span", null, temperature));
+  }) : null;
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h2", null, "Hourly Forecast"), hourlyForecast);
 };
 
 var _default = HourlyForecast;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"components/Result.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../contexts/HourlyWeatherContext/index":"contexts/HourlyWeatherContext/index.js"}],"components/Result.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54177,7 +54192,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49162" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62329" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

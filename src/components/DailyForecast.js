@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { HourlyWeatherContext } from '../contexts/HourlyWeatherContext/index'
 
 const DailyForecast = () => {
