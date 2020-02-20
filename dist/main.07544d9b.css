@@ -18,8 +18,8 @@
   width: 100%;
 }
 .header-button {
-  font-size: 1.5rem;
-  margin: 20px 0 0 20px;
+  font-size: 1rem;
+  margin: 30px;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -55,9 +55,17 @@
 }
 
 .result {
-  width: 80%;
+  width: 30%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.today-group {
+  display: flex;
+}
+.today-group_temp {
+  display: flex;
   align-items: center;
 }
 
@@ -68,6 +76,7 @@
 }
 .hourly-title {
   margin: 20px 0;
+  border-bottom: 1px solid black;
 }
 .hourly-forecast {
   display: flex;
@@ -81,6 +90,7 @@
 }
 .daily-title {
   margin: 20px 0;
+  border-bottom: 1px solid black;
 }
 .daily-group {
   display: flex;

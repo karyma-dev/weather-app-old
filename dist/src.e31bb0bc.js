@@ -52761,8 +52761,7 @@ var weatherReducer = function weatherReducer(state, action) {
             weather: _lodash.default.toLower(weather[0].main),
             description: _lodash.default.startCase(weather[0].description),
             iconId: weather[0].icon,
-            temperature: Math.round(Number(main.temp) - 273.15) + '\xB0 C',
-            humidity: main.humidity + '%'
+            temperature: Math.round(Number(main.temp) - 273.15) + '\xB0 C'
           };
           state = newObj;
           resolve(state);
@@ -53892,9 +53891,15 @@ var TodayForecast = function TodayForecast() {
       humidity = _useContext.humidity,
       iconId = _useContext.iconId;
 
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", null, _react.default.createElement("img", {
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
+    className: "today-description"
+  }, description), _react.default.createElement("div", {
+    className: "today-group"
+  }, _react.default.createElement("img", {
     src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
-  }), _react.default.createElement("span", null, description)), _react.default.createElement("div", null, _react.default.createElement("span", null, temperature)), _react.default.createElement("div", null, _react.default.createElement("span", null, "Humidity: ", humidity)));
+  }), _react.default.createElement("span", {
+    className: "today-group_temp"
+  }, temperature)));
 };
 
 var _default = TodayForecast;
@@ -54011,7 +54016,9 @@ var Result = function Result() {
 
   return _react.default.createElement("div", {
     className: "result"
-  }, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement(_TodayForecast.default, null)), _react.default.createElement("div", {
+  }, _react.default.createElement("h2", null, city), _react.default.createElement("div", {
+    className: "today"
+  }, _react.default.createElement(_TodayForecast.default, null)), _react.default.createElement("div", {
     className: "hourly"
   }, _react.default.createElement("h3", {
     className: "hourly-title"
@@ -54201,7 +54208,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65092" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52523" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

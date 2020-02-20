@@ -27,8 +27,7 @@ export const weatherReducer = (state, action) => {
               weather: _.toLower(weather[0].main),
               description: _.startCase(weather[0].description),
               iconId: weather[0].icon,
-              temperature: Math.round(Number(main.temp) - 273.15) + '\xB0 C',
-              humidity: main.humidity + '%'
+              temperature: Math.round(Number(main.temp) - 273.15) + '\xB0 C'
             }
 
             state = newObj

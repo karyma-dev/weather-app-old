@@ -18,8 +18,8 @@
   width: 100%;
 
   &-button {
-    font-size: 1.5rem;
-    margin: 20px 0 0 20px;
+    font-size: 1rem;
+    margin: 30px;
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -58,10 +58,20 @@
 }
 
 .result {
-  width: 80%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.today {
+  &-group {
+    display: flex;
+    &_temp {
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
 .hourly {
@@ -71,6 +81,7 @@
 
   &-title {
     margin: 20px 0;
+    border-bottom: 1px solid black;
   }
 
   &-forecast {
@@ -86,6 +97,7 @@
 
   &-title {
     margin: 20px 0;
+    border-bottom: 1px solid black;
   }
 
   &-group {

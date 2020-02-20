@@ -8,15 +8,10 @@ const TodayForecast = () => {
 
   return (
     <Fragment>
-      <div>
+      <div className="today-description">{description}</div>
+      <div className="today-group">
         <img src={`http://openweathermap.org/img/wn/${iconId}.png`} />
-        <span>{description}</span>
-      </div>
-      <div>
-        <span>{temperature}</span>
-      </div>
-      <div>
-        <span>Humidity: {humidity}</span>
+        <span className="today-group_temp">{temperature}</span>
       </div>
     </Fragment>
   )

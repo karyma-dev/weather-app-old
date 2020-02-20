@@ -11,7 +11,7 @@ const Result = () => {
   return (
     <div className="result">
       <h2>{city}</h2>
-      <div>
+      <div className="today">
         <TodayForecast />
       </div>
 
