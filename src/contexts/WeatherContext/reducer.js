@@ -23,6 +23,7 @@ export const weatherReducer = (state, action) => {
             const { weather, main } = data
 
             const newObj = {
+              city: action.payload,
               weather: _.toLower(weather[0].main),
               description: _.startCase(weather[0].description),
               iconId: weather[0].icon,

@@ -16,14 +16,14 @@ const Result = () => {
       </div>
 
       <div className="hourly">
-        <h3>Hourly Forecast</h3>
+        <h3 className="hourly-title">Hourly Forecast</h3>
         <div className="hourly-forecast">
           <HourlyForecast />
         </div>
       </div>
 
       <div className="daily">
-        <h3>Daily Forecast</h3>
+        <h3 className="daily-title">Daily Forecast</h3>
         <DailyForecast />
       </div>
     </div>

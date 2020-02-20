@@ -66,6 +66,9 @@
   flex-direction: column;
   width: 100%;
 }
+.hourly-title {
+  margin: 20px 0;
+}
 .hourly-forecast {
   display: flex;
   justify-content: space-between;
@@ -76,9 +79,15 @@
   flex-direction: column;
   width: 100%;
 }
+.daily-title {
+  margin: 20px 0;
+}
 .daily-group {
   display: flex;
   justify-content: space-between;
+}
+.daily-group_day {
+  width: 60px;
 }
 
 /*# sourceMappingURL=/main.07544d9b.css.map */

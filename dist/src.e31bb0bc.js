@@ -52757,6 +52757,7 @@ var weatherReducer = function weatherReducer(state, action) {
           var weather = data.weather,
               main = data.main;
           var newObj = {
+            city: action.payload,
             weather: _lodash.default.toLower(weather[0].main),
             description: _lodash.default.startCase(weather[0].description),
             iconId: weather[0].icon,
@@ -53935,9 +53936,11 @@ var DailyForecast = function DailyForecast() {
     return _react.default.createElement("div", {
       className: "daily-group",
       key: i
-    }, _react.default.createElement("div", null, day), _react.default.createElement("div", null, _react.default.createElement("img", {
+    }, _react.default.createElement("div", {
+      className: "daily-group_day"
+    }, day), _react.default.createElement("img", {
       src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
-    })), _react.default.createElement("div", null, temperature));
+    }), _react.default.createElement("div", null, temperature));
   }) : null;
   return _react.default.createElement(_react.Fragment, null, dailyForecast);
 };
@@ -54010,11 +54013,15 @@ var Result = function Result() {
     className: "result"
   }, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement(_TodayForecast.default, null)), _react.default.createElement("div", {
     className: "hourly"
-  }, _react.default.createElement("h3", null, "Hourly Forecast"), _react.default.createElement("div", {
+  }, _react.default.createElement("h3", {
+    className: "hourly-title"
+  }, "Hourly Forecast"), _react.default.createElement("div", {
     className: "hourly-forecast"
   }, _react.default.createElement(_HourlyForecast.default, null))), _react.default.createElement("div", {
     className: "daily"
-  }, _react.default.createElement("h3", null, "Daily Forecast"), _react.default.createElement(_DailyForecast.default, null)));
+  }, _react.default.createElement("h3", {
+    className: "daily-title"
+  }, "Daily Forecast"), _react.default.createElement(_DailyForecast.default, null)));
 };
 
 var _default = Result;
@@ -54194,7 +54201,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56924" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65092" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
