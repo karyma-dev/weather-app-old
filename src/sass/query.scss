@@ -1,0 +1,41 @@
+@media only screen and (max-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+
+  .result {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .result {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .result {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  html {
+    font-size: 12px;
+  }
+
+  .result {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .result {
+    width: 90%;
+  }
+}
