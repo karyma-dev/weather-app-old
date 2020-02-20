@@ -6,7 +6,6 @@ const HourlyForecast = () => {
 
   const hourlyForecast = hourlyWeather
     ? hourlyWeather.slice(0, 5).map((forecast, i) => {
-        console.log(forecast)
         const iconId = forecast.weather[0].icon
         const temperature =
           Math.round(Number(forecast.main.temp) - 273.15) + '\xB0 C'

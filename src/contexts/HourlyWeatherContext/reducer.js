@@ -11,9 +11,14 @@ export const hourlyWeatherReducer = (state, action) => {
           .then(({ data }) => {
             const arr = data.list.map((item) => {
               const dateObj = new Date(item.dt * 1000)
+              const time = dateObj.toLocaleTimeString()
+              console.log(time)
               item.day = dateObj.toDateString().slice(0, 3)
               item.date = dateObj.toDateString().slice(4, 10)
-              item.time = dateObj.toLocaleTimeString()
+              item.time = `${time.slice(0, time.search(/\D/))}${time.slice(
+                8,
+                11
+              )}`.replace(/\s/g, '')
 
               return item
             })

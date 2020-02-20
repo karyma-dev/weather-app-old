@@ -53746,9 +53746,11 @@ var hourlyWeatherReducer = function hourlyWeatherReducer(state, action) {
           var data = _ref.data;
           var arr = data.list.map(function (item) {
             var dateObj = new Date(item.dt * 1000);
+            var time = dateObj.toLocaleTimeString();
+            console.log(time);
             item.day = dateObj.toDateString().slice(0, 3);
             item.date = dateObj.toDateString().slice(4, 10);
-            item.time = dateObj.toLocaleTimeString();
+            item.time = "".concat(time.slice(0, time.search(/\D/))).concat(time.slice(8, 11)).replace(/\s/g, '');
             return item;
           });
           state = arr;
@@ -53970,7 +53972,6 @@ var HourlyForecast = function HourlyForecast() {
       hourlyWeather = _useContext.hourlyWeather;
 
   var hourlyForecast = hourlyWeather ? hourlyWeather.slice(0, 5).map(function (forecast, i) {
-    console.log(forecast);
     var iconId = forecast.weather[0].icon;
     var temperature = Math.round(Number(forecast.main.temp) - 273.15) + '\xB0 C';
     return _react.default.createElement("div", {
