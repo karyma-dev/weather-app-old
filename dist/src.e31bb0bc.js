@@ -53874,7 +53874,7 @@ var Form = function Form() {
 
 var _default = Form;
 exports.default = _default;
-},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js","../contexts/HourlyWeatherContext/index":"contexts/HourlyWeatherContext/index.js"}],"components/DailyForecast.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/slicedToArray":"../node_modules/@babel/runtime/helpers/slicedToArray.js","react":"../node_modules/react/index.js","lodash":"../node_modules/lodash/lodash.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js","../contexts/HourlyWeatherContext/index":"contexts/HourlyWeatherContext/index.js"}],"components/TodayForecast.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53884,17 +53884,72 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _index = require("../contexts/WeatherContext/index");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var TodayForecast = function TodayForecast() {
+  var _useContext = (0, _react.useContext)(_index.WeatherContext),
+      description = _useContext.description,
+      temperature = _useContext.temperature,
+      humidity = _useContext.humidity,
+      iconId = _useContext.iconId;
+
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", null, _react.default.createElement("img", {
+    src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
+  }), _react.default.createElement("span", null, description)), _react.default.createElement("div", null, _react.default.createElement("span", null, temperature)), _react.default.createElement("div", null, _react.default.createElement("span", null, "Humidity: ", humidity)));
+};
+
+var _default = TodayForecast;
+exports.default = _default;
+},{"react":"../node_modules/react/index.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js"}],"components/DailyForecast.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _index = require("../contexts/HourlyWeatherContext/index");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var DailyForecast = function DailyForecast() {
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h2", null, "Daily Forecast"));
+  var _useContext = (0, _react.useContext)(_index.HourlyWeatherContext),
+      hourlyWeather = _useContext.hourlyWeather;
+
+  var groupBy = function groupBy(key) {
+    return function (array) {
+      return array.reduce(function (objectsByKeyValue, obj) {
+        var value = obj[key];
+        objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+        return objectsByKeyValue;
+      }, {});
+    };
+  };
+
+  var weeklyWeather = hourlyWeather ? groupBy('day')(hourlyWeather) : {};
+  var dailyForecast = hourlyWeather ? Object.keys(weeklyWeather).map(function (day, i) {
+    var iconId = weeklyWeather[day][0].weather[0].icon;
+    var temperature = Math.round(Number(weeklyWeather[day][0].main.temp) - 273.15) + '\xB0 C';
+    return _react.default.createElement("div", {
+      key: i
+    }, _react.default.createElement("span", null, day), _react.default.createElement("img", {
+      src: "http://openweathermap.org/img/wn/".concat(iconId, ".png")
+    }), _react.default.createElement("span", null, temperature));
+  }) : null;
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h2", null, "Daily Forecast"), dailyForecast);
 };
 
 var _default = DailyForecast;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"components/HourlyForecast.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../contexts/HourlyWeatherContext/index":"contexts/HourlyWeatherContext/index.js"}],"components/HourlyForecast.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -53926,7 +53981,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _index = require("../contexts/WeatherContext/index");
 
-var _index2 = require("../contexts/HourlyWeatherContext/index");
+var _TodayForecast = _interopRequireDefault(require("./TodayForecast"));
 
 var _DailyForecast = _interopRequireDefault(require("./DailyForecast"));
 
@@ -53940,37 +53995,14 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var Result = function Result() {
   var _useContext = (0, _react.useContext)(_index.WeatherContext),
-      city = _useContext.city,
-      description = _useContext.description,
-      temperature = _useContext.temperature,
-      humidity = _useContext.humidity,
-      iconId = _useContext.iconId;
+      city = _useContext.city;
 
-  var _useContext2 = (0, _react.useContext)(_index2.HourlyWeatherContext),
-      hourlyWeather = _useContext2.hourlyWeather;
-
-  if (hourlyWeather) {
-    var groupBy = function groupBy(key) {
-      return function (array) {
-        return array.reduce(function (objectsByKeyValue, obj) {
-          var value = obj[key];
-          objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
-          return objectsByKeyValue;
-        }, {});
-      };
-    };
-
-    var groupByDay = groupBy('day');
-    var days = groupByDay(hourlyWeather);
-    console.log(days);
-  }
-
-  return _react.default.createElement("div", null, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement(TodayForecast, null)), _react.default.createElement("div", null, _react.default.createElement(_HourlyForecast.default, null)), _react.default.createElement("div", null, _react.default.createElement(_DailyForecast.default, null)));
+  return _react.default.createElement("div", null, _react.default.createElement("h2", null, city), _react.default.createElement("div", null, _react.default.createElement(_TodayForecast.default, null)), _react.default.createElement("div", null, _react.default.createElement(_HourlyForecast.default, null)), _react.default.createElement("div", null, _react.default.createElement(_DailyForecast.default, null)));
 };
 
 var _default = Result;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js","../contexts/HourlyWeatherContext/index":"contexts/HourlyWeatherContext/index.js","./DailyForecast":"components/DailyForecast.js","./HourlyForecast":"components/HourlyForecast.js"}],"img/Home.jpeg":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../contexts/WeatherContext/index":"contexts/WeatherContext/index.js","./TodayForecast":"components/TodayForecast.js","./DailyForecast":"components/DailyForecast.js","./HourlyForecast":"components/HourlyForecast.js"}],"img/Home.jpeg":[function(require,module,exports) {
 module.exports = "/Home.33536e89.jpeg";
 },{}],"img/backgroundImage/rain.jpg":[function(require,module,exports) {
 module.exports = "/rain.c8d12a59.jpg";
@@ -54145,7 +54177,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55775" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49162" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

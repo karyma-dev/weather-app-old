@@ -1,31 +1,12 @@
 import React, { useContext } from 'react'
 import { WeatherContext } from '../contexts/WeatherContext/index'
-import { HourlyWeatherContext } from '../contexts/HourlyWeatherContext/index'
 
+import TodayForecast from './TodayForecast'
 import DailyForecast from './DailyForecast'
 import HourlyForecast from './HourlyForecast'
 
 const Result = () => {
-  const { city, description, temperature, humidity, iconId } = useContext(
-    WeatherContext
-  )
-
-  const { hourlyWeather } = useContext(HourlyWeatherContext)
-
-  if (hourlyWeather) {
-    const groupBy = (key) => (array) =>
-      array.reduce((objectsByKeyValue, obj) => {
-        const value = obj[key]
-        objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj)
-        return objectsByKeyValue
-      }, {})
-
-    const groupByDay = groupBy('day')
-
-    const days = groupByDay(hourlyWeather)
-
-    console.log(days)
-  }
+  const { city } = useContext(WeatherContext)
 
   return (
     <div>
