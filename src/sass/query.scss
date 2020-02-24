@@ -13,12 +13,20 @@
     font-size: 14px;
   }
 
+  .form {
+    width: 50vw;
+  }
+
   .result {
     width: 60%;
   }
 }
 
 @media only screen and (max-width: 550px) {
+  .form {
+    width: 60vw;
+  }
+
   .result {
     width: 70%;
   }
@@ -27,6 +35,10 @@
 @media only screen and (max-width: 425px) {
   html {
     font-size: 12px;
+  }
+
+  .form {
+    width: 70vw;
   }
 
   .result {

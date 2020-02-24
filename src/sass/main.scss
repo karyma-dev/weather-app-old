@@ -4,7 +4,6 @@
   background-size: cover;
   background-position: center top;
   position: absolute;
-  filter: blur(1px);
   z-index: 0;
 }
 
@@ -39,19 +38,24 @@
   height: 40px;
   display: flex;
   justify-content: center;
+  border-bottom: solid 2px white;
 
   &-input {
-    opacity: 0.8;
-    padding: 5px 10px;
     font-size: 1rem;
-    margin-right: 5px;
     height: 100%;
     width: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+  }
+
+  &-input::placeholder {
+    color: white;
   }
 
   &-submit {
     border: 0;
-    font-size: 1rem;
+    background-color: transparent;
     padding: 5px 10px;
     cursor: pointer;
   }
@@ -87,6 +91,10 @@
   &-forecast {
     display: flex;
     justify-content: space-between;
+
+    &_field {
+      text-align: center;
+    }
   }
 }
 
@@ -106,6 +114,15 @@
 
     &_day {
       width: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    &_temp {
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
   }
 }

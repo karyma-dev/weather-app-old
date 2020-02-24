@@ -5,7 +5,7 @@ import Navbar from './components/Navbar'
 import Form from './components/Form'
 import Result from './components/Result'
 
-import homeBackground from './img/Home.jpeg'
+import homeBackground from './img/Home.jpg'
 import backgroundImage from './img/backgroundImage'
 
 const App = () => {

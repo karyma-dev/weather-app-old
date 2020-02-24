@@ -28,7 +28,7 @@ const DailyForecast = () => {
           <div className="daily-group" key={i}>
             <div className="daily-group_day">{day}</div>
             <img src={`http://openweathermap.org/img/wn/${iconId}.png`} />
-            <div>{temperature}</div>
+            <div className="daily-group_temp">{temperature}</div>
           </div>
         )
       })

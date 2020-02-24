@@ -4,7 +4,6 @@
   background-size: cover;
   background-position: center top;
   position: absolute;
-  filter: blur(1px);
   z-index: 0;
 }
 
@@ -38,18 +37,22 @@
   height: 40px;
   display: flex;
   justify-content: center;
+  border-bottom: solid 2px white;
 }
 .form-input {
-  opacity: 0.8;
-  padding: 5px 10px;
   font-size: 1rem;
-  margin-right: 5px;
   height: 100%;
   width: 100%;
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+.form-input::placeholder {
+  color: white;
 }
 .form-submit {
   border: 0;
-  font-size: 1rem;
+  background-color: transparent;
   padding: 5px 10px;
   cursor: pointer;
 }
@@ -82,6 +85,9 @@
   display: flex;
   justify-content: space-between;
 }
+.hourly-forecast_field {
+  text-align: center;
+}
 
 .daily {
   display: flex;
@@ -98,6 +104,14 @@
 }
 .daily-group_day {
   width: 60px;
+  display: flex;
+  align-items: center;
+}
+.daily-group_temp {
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 /*# sourceMappingURL=/main.07544d9b.css.map */

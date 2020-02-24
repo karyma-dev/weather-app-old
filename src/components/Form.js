@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 import { WeatherContext } from '../contexts/WeatherContext/index'
 import { HourlyWeatherContext } from '../contexts/HourlyWeatherContext/index'
+import searchIcon from '../img/search.svg'
 
 const Form = () => {
   const [city, setCity] = useState('')
@@ -31,10 +32,14 @@ const Form = () => {
         type="text"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        placeholder="City"
+        placeholder="City Name"
+        onFocus={(e) => (e.target.placeholder = '')}
+        onBlur={(e) => (e.target.placeholder = 'City Name')}
       />
 
-      <button className="form-submit">Submit</button>
+      <button className="form-submit">
+        <img src={searchIcon} alt="search icon" />
+      </button>
     </form>
   )
 }

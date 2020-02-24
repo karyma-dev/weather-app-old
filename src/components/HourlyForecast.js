@@ -11,9 +11,9 @@ const HourlyForecast = () => {
           Math.round(Number(forecast.main.temp) - 273.15) + '\xB0 C'
         return (
           <div key={i}>
-            <div>{forecast.time}</div>
+            <div className="hourly-forecast_field">{forecast.time}</div>
             <img src={`http://openweathermap.org/img/wn/${iconId}.png`} />
-            <div>{temperature}</div>
+            <div className="hourly-forecast_field">{temperature}</div>
           </div>
         )
       })
