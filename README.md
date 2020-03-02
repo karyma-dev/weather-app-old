@@ -1,8 +1,16 @@
 # Weather App
 
-Weather application created with [openweathermap api](https://openweathermap.org) to practice react hooks and context api.
+Weather application created(Currently only works with cities in Canada) with [openweathermap api](https://openweathermap.org) to practice react hooks and context api.
+
+[Sample Project](http://karyma-weather-app.s3-website-us-west-2.amazonaws.com/)
 
 ## Getting Started
+
+### Prerequisite
+
+```
+  npm install parcel -g
+```
 
 ### Installing
 
