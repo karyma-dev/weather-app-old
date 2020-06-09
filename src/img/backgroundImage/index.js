@@ -7,13 +7,13 @@ import snow from './snow.jpg'
 import thunderstorm from './thunderstorm.jpg'
 
 const backgroundImage = {
-  rain,
-  drizzle,
-  clear,
-  clouds,
-  atmosphere,
-  snow,
-  thunderstorm
+    rain,
+    drizzle,
+    clear,
+    clouds,
+    atmosphere,
+    snow,
+    thunderstorm
 }
 
 export default backgroundImage

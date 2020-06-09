@@ -6,18 +6,13 @@ import useAsyncReducer from '../../hooks/useAsyncReducer'
 export const HourlyWeatherContext = createContext()
 
 const HourlyWeatherContextProvider = (props) => {
-  const [hourlyWeather, hourlyWeatherDispatch] = useAsyncReducer(
-    hourlyWeatherReducer,
-    null
-  )
+    const [hourlyWeather, hourlyWeatherDispatch] = useAsyncReducer(hourlyWeatherReducer, null)
 
-  return (
-    <HourlyWeatherContext.Provider
-      value={{ hourlyWeather, hourlyWeatherDispatch }}
-    >
-      {props.children}
-    </HourlyWeatherContext.Provider>
-  )
+    return (
+        <HourlyWeatherContext.Provider value={{ hourlyWeather, hourlyWeatherDispatch }}>
+            {props.children}
+        </HourlyWeatherContext.Provider>
+    )
 }
 
 export default HourlyWeatherContextProvider

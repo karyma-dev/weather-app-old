@@ -9,22 +9,22 @@ import homeBackground from './img/home.jpg'
 import backgroundImage from './img/backgroundImage'
 
 const App = () => {
-  const { weather } = useContext(WeatherContext)
-  const body = weather ? <Result /> : <Form />
+    const { weather } = useContext(WeatherContext)
+    const body = weather ? <Result /> : <Form />
 
-  const backgroundStyle = weather
-    ? { backgroundImage: `url(${backgroundImage[weather]})`, opacity: '0.8' }
-    : { backgroundImage: `url(${homeBackground})` }
+    const backgroundStyle = weather
+        ? { backgroundImage: `url(${backgroundImage[weather]})`, opacity: '0.8' }
+        : { backgroundImage: `url(${homeBackground})` }
 
-  return (
-    <Fragment>
-      <Navbar />
-      <div className="app">
-        <div className="background" style={backgroundStyle}></div>
-        <main className="main">{body}</main>
-      </div>
-    </Fragment>
-  )
+    return (
+        <Fragment>
+            <Navbar />
+            <div className="app">
+                <div className="background" style={backgroundStyle}></div>
+                <main className="main">{body}</main>
+            </div>
+        </Fragment>
+    )
 }
 
 export default App
